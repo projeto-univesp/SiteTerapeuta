@@ -14,16 +14,44 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
+
+
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from agenda.views import agenda
-from cadastro_paciente.views import cadastroPaciente
-from login_terapeuta.views import loginTerapeuta
+from login_terapeuta.views import loginTerapeuta 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('agenda/', agenda),
-    path('cadastropaciente/', cadastroPaciente),
-    path('login/', loginTerapeuta)
+    path('agenda/', agenda), 
+    path('teste/', loginTerapeuta),
+    path('cadastro/', include('cadastro_paciente.urls'))
 ]
+
+
+
+'''urlpatterns = [
+    path('cadastropaciente/', CadastroPacienteListView.as_view(), name='cadastropaciente_list'),
+    path('cadastropaciente/<int:pk>/', CadastroPacienteDetailView.as_view(), name='cadastropaciente_detail'),
+    path('cadastropaciente/new/', CadastroPacienteCreateView.as_view(), name='cadastropaciente_create'),
+    path('cadastropaciente/<int:pk>/edit/', CadastroPacienteUpdateView.as_view(), name='cadastropaciente_update'),
+    path('cadastropaciente/<int:pk>/delete/', CadastroPacienteDeleteView.as_view(), name='cadastropaciente_delete'),
+]'''
+
+'''urlpatterns = [
+    path("", CadastroPacienteListView.as_view()),
+]'''
+
+'''from django.urls import path
+from cadastro_paciente.views import PacienteListView, PacienteDetailView, PacienteCreateView, PacienteUpdateView, PacienteDeleteView
+
+urlpatterns = [
+    path('c/', PacienteListView.as_view(), name='paciente_list'),
+    path('pacientes/<int:pk>/', PacienteDetailView.as_view(), name='paciente_detail'),
+    path('pacientes/novo/', PacienteCreateView.as_view(), name='paciente_create'),
+    path('pacientes/<int:pk>/editar/', PacienteUpdateView.as_view(), name='paciente_update'),
+    path('pacientes/<int:pk>/excluir/', PacienteDeleteView.as_view(), name='paciente_delete'),
+]'''
+

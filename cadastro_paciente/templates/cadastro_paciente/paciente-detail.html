@@ -1,0 +1,18 @@
+<!-- paciente_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes do Paciente</title>
+</head>
+<body>
+    <h1>Detalhes do Paciente</h1>
+    <p><strong>Nome:</strong> {{ object.nome }}</p>
+    <p><strong>Data de Nascimento:</strong> {{ object.data_nascimento }}</p>
+    <p><strong>Sexo:</strong> {{ object.get_sexo_display }}</p>
+    <!-- Adicione outros campos conforme necessário -->
+    <a href="{% url 'paciente_update' object.pk %}">Editar</a>
+    <a href="{% url 'paciente_delete' object.pk %}">Excluir</a>
+    <a href="{% url 'paciente_list' %}">Voltar para a lista</a>
+</body>
+</html>

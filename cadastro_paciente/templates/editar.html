@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editar Cadastro</title>
+  </head>
+  <body>
+    <h1>Editar Cadastro</h1>
+
+    <form action="{% url 'editar' paciente.idPaciente %}" method="POST">
+      {% csrf_token %}
+      <h3>Nome</h3>
+      <input type="text" name="nome" value="{{paciente.nome}}" />
+      <h3>Data de Nascimento</h3>
+      <input
+        type="date"
+        name="data_nascimento"
+        value="{{paciente.data_nascimento|date:'Y-m-d'}}"
+      />
+      <h3>Sexo</h3>
+      <input type="text" name="sexo" value="{{paciente.sexo}}" />
+      <h3>Email</h3>
+      <input type="text" name="email" value="{{paciente.email}}" />
+      <h3>CPF</h3>
+      <input type="text" name="cpf" value="{{paciente.cpf}}" />
+      <h3>RG</h3>
+      <input type="text" name="rg" value="{{paciente.rg}}" />
+      <h3>Celular</h3>
+      <input type="text" name="celular" value="{{paciente.celular}}" />
+      <h3>Endereço</h3>
+      <input type="text" name="Endereco" value="{{paciente.celular}}" />
+      <h3>Nacionalidade</h3>
+      <input
+        type="text"
+        name="nacionalidade"
+        value="{{paciente.nacionalidade}}"
+      />
+      <h3>estado Civil</h3>
+      <input type="text" name="estadocivil" value="{{paciente.estadocivil}}" />
+      <h3>Profissão</h3>
+      <input type="text" name="profissao" value="{{paciente.profissao}}" />
+      <h3>Convênio</h3>
+      <input type="text" name="convenio" value="{{paciente.convenio}}" />
+      <br / > <br / >
+      <button type="submit">Atualizar</button>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+<!-- paciente_confirm_delete.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmar Exclusão</title>
+</head>
+<body>
+    <h1>Tem certeza que deseja excluir o paciente "{{ object.nome }}"?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirmar</button>
+    </form>
+    <a href="{% url 'paciente_detail' object.pk %}">Cancelar</a>
+</body>
+</html>
