@@ -19,16 +19,18 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-
-from agenda.views import agenda
+from django.conf import settings
+from django.conf.urls.static import static
 from login_terapeuta.views import loginTerapeuta 
+from agenda.views import listar_agenda
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('agenda/', agenda), 
+    path('agenda/', listar_agenda), 
     path('teste/', loginTerapeuta),
-    path('cadastro/', include('cadastro_paciente.urls'))
+    path('cadastro/', include('cadastro_paciente.urls')),
 ]
+
 
 
 
