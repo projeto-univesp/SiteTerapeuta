@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisar Pacientes</title>
+</head>
+<body>
+    <ul>
+            <p> Nome: {{ paciente.nome }} </p>
+            <p> Data de Nascimento: {{ paciente.data_nascimento }} </p>
+            <p> Sexo: {{ paciente.sexo }}  </p>
+            <p> Email: {{ paciente.email }}  </p>
+            <p> CPF: {{ paciente.cpf }}  </p>
+            <p> RG: {{ paciente.rg }}  </p>
+            <p> Celular: {{ paciente.celular }}  </p>
+            <p> Endereço: {{ paciente.endereco }}  </p>
+            <p> Nacionalidade: {{ paciente.nacionalidade }}  </p>
+            <p> Estado Civil: {{ paciente.estadocivil }}  </p>
+            <p> Profissão: {{ paciente.profissao }}  </p>
+            <p> Convênio: {{ paciente.convenio }}  </p>
+            <a href="{%url 'homePaciente' %}" target="_self"><button>Voltar</button></a>
+            <a href = "{% url 'editar' paciente.idPaciente %}" target="_self"><button>Editar</button></a>
+            <a href = "{% url 'deletar' paciente.idPaciente %}" target="_self"><button>Deletar</button></a>
+    </ul>
+</body>
+</html>

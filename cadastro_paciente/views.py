@@ -27,6 +27,10 @@ def buscar_resultados(request):
     paciente = CadastroPaciente.objects.filter(nome__icontains=nome)
     return render(request, "resultado_busca.html", {"paciente": paciente, "nome": nome})
 
+def visualizar_paciente(request, idPaciente):
+    paciente = CadastroPaciente.objects.get(idPaciente=idPaciente)
+    return render(request, "visualizar_paciente.html", {"paciente": paciente})
+
 #cadastra informações do paciente
 def salvar(request):
     nome = request.POST.get("nome")

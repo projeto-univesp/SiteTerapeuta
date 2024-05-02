@@ -18,7 +18,7 @@ class CadastroPaciente(models.Model):
 
     idPaciente = models.AutoField(primary_key=True, null=False, blank=False)
     nome = models.CharField(max_length=100, null=False, blank=False)
-    data_nascimento = models.DateField()
+    data_nascimento = models.DateField(null=True, blank=True)
     sexo = models.CharField(max_length=1, choices=SEXO_CHOICES)
     email = models.EmailField(max_length=254, null=True, blank=True)
     cpf = models.CharField(max_length=14, null=True, blank=True)
