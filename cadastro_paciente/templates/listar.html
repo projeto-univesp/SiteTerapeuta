@@ -4,17 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listar Pacientes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        .paciente-card {
+            display: inline-block;
+            border: 1px solid rgb(202, 194, 194);
+            margin: 10px;
+            padding: 10px;
+            width: calc(30% - 20px);
+            min-width: 100px;
+            height: auto;
+            background-color: white;
+        }
+        .paciente-css {
+            padding-left: 50px;
+            padding-right: 135px;
+        }
+    </style>
 </head>
-<body>
-    <h2>Lista de Pacientes Cadastrados:</h2>
+<body class="bg-light">
+    <h2 style="text-align: center;">Lista de Pacientes</h2>
+    <br>
+    <div class="paciente-css">
+        <input type="text" style="height: 30px; width: 100%;" class="form-control" placeholder="Pesquisar" oninput="filterCards(this.value)">
+    </div>
+   
+    <script>
+        function filterCards(value) {
+            var cards = document.getElementsByClassName("paciente-card");
+            for (var i = 0; i < cards.length; i++) {
+                var card = cards[i];
+                var nome = card.getElementsByTagName("strong")[0].innerText.toLowerCase();
+                if (nome.includes(value.toLowerCase())) {
+                    card.style.display = "inline-block";
+                } else {
+                    card.style.display = "none";
+                }
+            }
+        }
+    </script>
     <ul>
         {% for paciente in paciente %}
-            <li>{{ paciente.nome }} </li>
-            <a href="{% url 'visualizar' paciente.idPaciente %}" target="_self">  <button>Visualizar</button></a>
+            <div class="paciente-card">
+                <strong>{{ paciente.nome }}</strong>
+
+                <br><span>Contato:</span>
+                {% if paciente.celular %}
+                    <span>{{ paciente.celular }}</span>
+                {% endif %}
+
+                <br><span>Data de nascimento:</span>
+                {% if paciente.data_nascimento %}
+                    <span>{{ paciente.data_nascimento }}</span>
+                {% endif %}
+
+                <br><span>Convenio:</span>
+                {% if paciente.convenio %}
+                    <span>{{ paciente.convenio }}</span>
+                {% endif %}
+                <br>
+            </div>
         {% endfor %}
     </ul>
     <br / >
-    <a href="{%url 'homePaciente' %}" target="_self"><button>Voltar</button>
-
-</body>
+    <div class="paciente-css">
+        <a href="{% url 'homePaciente' %}" target="_blank"><button class="btn btn-info" style="height: 36px; width: 177px;">Voltar</button></a>
+    </div>  
+    <style>
+        body {
+            background: linear-gradient(to right, #608a6c, #bbe6b0);
+        }
+        </style> 
 </html>
