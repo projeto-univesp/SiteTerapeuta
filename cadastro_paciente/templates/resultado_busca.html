@@ -4,27 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pesquisar Pacientes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #608a6c, #bbe6b0);
+        }
+    </style>
 </head>
 <body>
-    <h1>Buscar</h1>
+    <h1 style="text-align: center; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);">Buscar</h1>
     <!-- resultado_busca.html -->
 
-    <h2>Resultados para '{{ nome }}'</h2>
-
+    <h2 style="text-align: center;">Resultado{{ nome }}</h2>
 
     {% if paciente %}
     <ul>
         {% for paciente in paciente %}
-            <li>{{ paciente.nome }}</li>
-            <!-- Usando JavaScript para redirecionar para a página de visualização -->
-            <a href="{% url 'visualizar' paciente.idPaciente %}" target="_self">  <button>Visualizar</button></a>
+            <p> Nome: {{ paciente.nome }} </p>
+            <p> Data de Nascimento: {{ paciente.data_nascimento }} </p>
+            <p> Sexo: {{ paciente.sexo }}  </p>
+            <p> Email: {{ paciente.email }}  </p>
+            <p> CPF: {{ paciente.cpf }}  </p>
+            <p> RG: {{ paciente.rg }}  </p>
+            <p> Celular: {{ paciente.celular }}  </p>
+            <p> Endereço: {{ paciente.endereco }}  </p>
+            <p> Nacionalidade: {{ paciente.nacionalidade }}  </p>
+            <p> Estado Civil: {{ paciente.estadocivil }}  </p>
+            <p> Profissão: {{ paciente.profissao }}  </p>
+            <p> Convênio: {{ paciente.convenio }}  </p>
+            <a href="{%url 'homePaciente' %}" target="_blank"><button>Voltar</button></a>
+            <a href = "{% url 'editar' paciente.idPaciente %}" target="_blank"><button>Editar</button></a>
+            <a href = "{% url 'deletar' paciente.idPaciente %}" target="_blank"><button>Deletar</button></a>
         {% endfor %}
-        <br><br/>
-        <a href="{% url 'buscar' %}" target="_self"><button>Voltar</button></a>
     </ul>
     {% else %}
     <p>Nenhuma paciente encontrado com esse nome.</p>
-    <a href="{%url 'buscar' %}" target="_self"><button>Voltar</button>
+    <a href="{%url 'buscar' %}" target="_blank"><button>Voltar</button>
     {% endif %}
 
 </body>
