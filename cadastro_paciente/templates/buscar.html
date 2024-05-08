@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="favicon/Icons-Land-Medical-People-Doctor-Male.ico" type="image/x-icon">
     <title>Cadastro Pacientes</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -13,19 +15,30 @@
     </div>
     <!-- busca.html -->
 
-    <form method="GET" action="{% url 'buscar' %}">
-        <input type="text" name="nome" placeholder="Digite o nome">
-        <button type="submit">Buscar</button>
-    </form>
+    <div style="text-align: center;">
+        <div style="display: flex; justify-content: center;">
+            <form method="GET" action="{% url 'buscar' %}">
+                <input type="text" name="nome" placeholder="Digite o nome" class="form-control" style="width: 400px;">
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </form>
+        </div>
+    </div>
     
     <br><br\>
     <div class="my-class">
-        <a href="{% url 'homePaciente' %}" target="_self"><button>Voltar</button></a>
+        <div class="my-class" style="margin: 20px;">
+            <a href="{% url 'homePaciente' %}" target="_self"><button class="btn btn-secondary">Voltar</button></a>
+        </div>
     </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <style>
         body {
             background: linear-gradient(to right, #a4c5cf, #d8e7e7);
         }
     </style>
+        
+    </body>
 </body>
 </html>
