@@ -23,7 +23,7 @@ from login_terapeuta.views import loginTerapeuta
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('agenda/', agenda), 
+    path('agenda/', include('agenda.urls')), 
     path('teste/', loginTerapeuta),
     path('cadastro/', include('cadastro_paciente.urls'))
 ]
