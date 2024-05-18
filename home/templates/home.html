@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative; /* Adicionando posição relativa ao corpo */
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        .container h1 {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 0;
+            margin: -20px -20px 20px -20px;
+            border-radius: 5px 5px 0 0;
+        }
+        .container button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .container button:hover {
+            background-color: #0056b3;
+        }
+        .container a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        .container a:hover {
+            text-decoration: underline;
+        }
+        .logout-btn {
+            position: absolute; /* Posicionamento absoluto */
+            top: 20px; /* Distância do topo */
+            right: 20px; /* Distância da direita */
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .logout-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Terapeuta Agenda</h1>
+        <button onclick="window.location.href='/paciente/'">Cadastro de Pacientes</button>
+        <button onclick="window.location.href='/agenda/'">Agenda</button>
+    </div>
+    <a class="logout-btn" href="{% url 'logout' %}">Sair</a>
+    
+</body>
+</html>

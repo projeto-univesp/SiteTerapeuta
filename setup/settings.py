@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cadastro_paciente.apps.CadastroPacienteConfig',
     'agenda.apps.AgendaConfig',
-    'login_terapeuta.apps.LoginTerapeutaConfig'
+    'login_terapeuta.apps.LoginTerapeutaConfig',
+    'home.apps.HomeConfig'
 ]
 
 MIDDLEWARE = [
