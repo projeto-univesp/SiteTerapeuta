@@ -3,46 +3,105 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+    <link rel="icon" href="favicon/Icons-Land-Medical-People-Doctor-Male.ico" type="image/x-icon" />
     <title>Cadastro Pacientes</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
   </head>
+  <style>
+    .small-header {
+      font-size: 1rem;
+    }
+    body {
+      background: linear-gradient(to right, #a4c5cf, #d8e7e7);
+    }
+  </style>
   <body>
-    <h1 style="text-align: center;">Cadastrar</h1>
-      <form action="{% url 'salvar' %}" method="POST">
-        {% csrf_token %}
-      <h3>Nome</h3>
-      <input type="text" name="nome" />
-      <h3>Data de Nascimento</h3>
-      <input type="date" name="data_nascimento" />
-      <h3>Sexo</h3>
-      <input type="text" name="sexo" />
-      <h3>Email</h3>
-      <input type="text" name="email" />
-      <h3>CPF</h3>
-      <input type="text" name="cpf" />
-      <h3>RG</h3>
-      <input type="text" name="rg" />
-      <h3>Celular</h3>
-      <input type="text" name="celular" />
-      <h3>Endereço</h3>
-      <input type="text" name="Endereco" />
-      <h3>Nacionalidade</h3>
-      <input type="text" name="nacionalidade" />
-      <h3>estado Civil</h3>
-      <input type="text" name="estadocivil" />
-      <h3>Profissão</h3>
-      <input type="text" name="profissao" />
-      <h3>Convênio</h3>
-      <input type="text" name="convenio" />
-      <br / > <br / >
+    <h1 style="text-align: center; padding-bottom: 15px;">Cadastrar</h1>
+    <form action="{% url 'salvar' %}" method="POST" class="container">
+      {% csrf_token %}
+      <div class="row" style="padding-bottom: 15px;">
+        <div class="col-md-6">
+          <h3 class="small-header">Nome</h3>
+          <input type="text" name="nome" class="form-control" required />
+        </div>
+        <div class="col-md-6">
+          <h3 class="small-header">Data de Nascimento</h3>
+          <input type="date" name="data_nascimento" class="form-control" required/>
+        </div>
+      </div>
+      <div class="row" style="padding-bottom: 15px;">
+        <div class="col-md-6">
+          <h3 class="small-header">Sexo</h3>
+          <select name="sexo" class="form-control" required>
+            <option value="">Selecione</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Feminino">Feminino</option>
+            <option value="Outro">Outro</option>
+            <option value="Prefiro não dizer">Prefiro não dizer</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <h3 class="small-header">Email</h3>
+          <input type="email" name="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
+        </div>
+      </div>
+      <div class="row" style="padding-bottom: 15px;">
+        <div class="col-md-6">
+          <h3 class="small-header">CPF</h3>
+          <input type="text" name="cpf" class="form-control" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Formato: 123.456.789-00" required />
+        </div>
+        <div class="col-md-6">
+          <h3 class="small-header">RG</h3>
+          <input type="text" name="rg" class="form-control" pattern="\d+(\.\d+)*" title="Formato: números separados por pontos" required />
+        </div>
+      </div>
+      <div class="row" style="padding-bottom: 15px;">
+        <div class="col-md-6">
+          <h3 class="small-header">Celular</h3>
+          <input type="text" name="celular" class="form-control" pattern="\(\d{2}\) \d{5}-\d{4}" title="Formato: (99) 99999-9999" required />
+        </div>
+        <div class="col-md-6">
+          <h3 class="small-header">Endereço</h3>
+          <input type="text" name="Endereco" class="form-control" required/>
+        </div>
+      </div>
+      <div class="row" style="padding-bottom: 15px;">
+        <div class="col-md-6">
+          <h3 class="small-header">Nacionalidade</h3>
+          <input type="text" name="nacionalidade" class="form-control" required/>
+        </div>
+        <div class="col-md-6">
+          <h3 class="small-header">Estado Civil</h3>
+          <select name="estadocivil" class="form-control" required>
+            <option value="">Selecione</option>
+            <option value="Solteiro">Solteiro</option>
+            <option value="Casado(a)">Casado(a)</option>
+            <option value="Viuvo(a)">Viuvo(a)</option>
+            <option value="Divorciado(a)">Divorciado(a)</option>
+            <option value="União estável">União estável</option>
+          </select>
+        </div>
+      </div>
+      <div class="row" style="padding-bottom: 15px;">
+        <div class="col-md-6">
+          <h3 class="small-header">Profissão</h3>
+          <input type="text" name="profissao" class="form-control" required />
+        </div>
+        <div class="col-md-6">
+          <h3 class="small-header">Convênio</h3>
+          <input type="text" name="convenio" class="form-control" />
+        </div>
+      </div>
 
-      <button type="submit">Salvar</button>
-      <a href="{%url 'homePaciente' %}" target="_self"><button>Voltar</button></a>
+      <div>
+        <button type="submit" class="btn btn-info">Salvar</button>
+        <a href="{% url 'homePaciente' %}" class="btn btn-info" target="_self">Voltar</a>
+      </div>
+      <br> 
+      <br> <br>
     </form>
-    <style>
-      body {
-        background: linear-gradient(to right, #a4c5cf, #d8e7e7);
-      }
-    </style>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   </body>
 </html>

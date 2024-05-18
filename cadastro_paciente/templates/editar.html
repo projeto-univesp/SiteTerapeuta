@@ -4,46 +4,98 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Editar Cadastro</title>
+        <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
   </head>
-  <body>
-    <h1>Editar Cadastro</h1>
-
-    <form action="{% url 'editar' paciente.idPaciente %}" method="POST">
+  
+  <style>
+    .small-header {
+      font-size: 1rem;
+    }
+    body {
+      background: linear-gradient(to right, #a4c5cf, #d8e7e7);
+    }
+  </style>
+  
+  <body>  
+    <h1 style="text-align: center; padding-bottom: 15px;">Editar Cadastro</h1>
+    <form action="{% url 'salvar' %}" method="POST" class="container">
       {% csrf_token %}
-      <h3>Nome</h3>
-      <input type="text" name="nome" value="{{paciente.nome}}" />
-      <h3>Data de Nascimento</h3>
-      <input
-        type="date"
-        name="data_nascimento"
-        value="{{paciente.data_nascimento|date:'Y-m-d'}}"
-      />
-      <h3>Sexo</h3>
-      <input type="text" name="sexo" value="{{paciente.sexo}}" />
-      <h3>Email</h3>
-      <input type="text" name="email" value="{{paciente.email}}" />
-      <h3>CPF</h3>
-      <input type="text" name="cpf" value="{{paciente.cpf}}" />
-      <h3>RG</h3>
-      <input type="text" name="rg" value="{{paciente.rg}}" />
-      <h3>Celular</h3>
-      <input type="text" name="celular" value="{{paciente.celular}}" />
-      <h3>Endereço</h3>
-      <input type="text" name="Endereco" value="{{paciente.celular}}" />
-      <h3>Nacionalidade</h3>
-      <input
-        type="text"
-        name="nacionalidade"
-        value="{{paciente.nacionalidade}}"
-      />
-      <h3>estado Civil</h3>
-      <input type="text" name="estadocivil" value="{{paciente.estadocivil}}" />
-      <h3>Profissão</h3>
-      <input type="text" name="profissao" value="{{paciente.profissao}}" />
-      <h3>Convênio</h3>
-      <input type="text" name="convenio" value="{{paciente.convenio}}" />
-      <br / > <br / >
-      <button type="submit">Atualizar</button>
+      <div class="row" style="padding-bottom: 15px;">
+        <div class="col-md-6">
+          <h3 class="small-header">Nome</h3>
+          <input type="text" name="nome" class="form-control" value="{{paciente.nome}}" required />
+        </div>
+        <div class="col-md-6">
+          <h3 class="small-header">Data de Nascimento</h3>
+          <input type="date" name="data_nascimento" class="form-control" value="{{paciente.data_nascimento|date:'Y-m-d'}}" required/>
+        </div>
+      </div>
+      <div class="row" style="padding-bottom: 15px;">
+        <div class="col-md-6">
+          <h3 class="small-header">Sexo</h3>
+          <select name="sexo" class="form-control" required>
+            <option value="">Selecione</option>
+            <option value="Masculino" {% if paciente.sexo == "Masculino" %}selected{% endif %}>Masculino</option>
+            <option value="Feminino" {% if paciente.sexo == "Feminino" %}selected{% endif %}>Feminino</option>
+            <option value="Outro" {% if paciente.sexo == "Outro" %}selected{% endif %}>Outro</option>
+            <option value="Prefiro não dizer" {% if paciente.sexo == "Prefiro não dizer" %}selected{% endif %}>Prefiro não dizer</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <h3 class="small-header">Email</h3>
+          <input type="text" name="email" class="form-control" value="{{paciente.email}}" required/>
+        </div>
+      </div>
+      <div class="row" style="padding-bottom: 15px;">
+        <div class="col-md-6">
+          <h3 class="small-header">CPF</h3>
+          <input type="text" name="cpf" class="form-control" value="{{paciente.cpf}}" required />
+        </div>
+        <div class="col-md-6">
+          <h3 class="small-header">RG</h3>
+          <input type="text" name="rg" class="form-control" value="{{paciente.rg}}" required/>
+        </div>
+      </div>
+      <div class="row" style="padding-bottom: 15px;">
+        <div class="col-md-6">
+          <h3>Celular</h3>
+          <input type="text" name="celular" class="form-control" value="{{paciente.celular}}" />
+        </div>
+        <div class="col-md-6">
+          <h3>Endereço</h3>
+          <input type="text" name="Endereco" class="form-control" value="{{paciente.Endereco}}" />
+        </div>
+      </div>
+      <div class="row" style="padding-bottom: 15px;">
+        <div class="col-md-6">
+          <h3>Nacionalidade</h3>
+          <input type="text" name="nacionalidade" class="form-control" value="{{paciente.nacionalidade}}" />
+        </div>
+        <div class="col-md-6">
+          <h3>Estado Civil</h3>
+          <select name="estadocivil" class="form-control" required>
+            <option value="">Selecione</option>
+            <option value="Solteiro" {% if paciente.estadocivil == "Solteiro" %}selected{% endif %}>Solteiro</option>
+            <option value="Casado(a)" {% if paciente.estadocivil == "Casado(a)" %}selected{% endif %}>Casado(a)</option>
+            <option value="Viuvo(a)" {% if paciente.estadocivil == "Viuvo(a)" %}selected{% endif %}>Viuvo(a)</option>
+            <option value="Divorciado(a)" {% if paciente.estadocivil == "Divorciado(a)" %}selected{% endif %}>Divorciado(a)</option>
+            <option value="União estável" {% if paciente.estadocivil == "União estável" %}selected{% endif %}>União estável</option>
+          </select>
+        </div>
+      </div>
+      <div class="row" style="padding-bottom: 15px;">
+        <div class="col-md-6">
+          <h3>Profissão</h3>
+          <input type="text" name="profissao" class="form-control" value="{{paciente.profissao}}" />
+        </div>
+        <div class="col-md-6">
+          <h3>Convênio</h3>
+          <input type="text" name="convenio" class="form-control" value="{{paciente.convenio}}" />
+        </div>
+      </div>
+      <button type="submit" class="btn btn-info">Atualizar</button>
+      <a href="{% url 'buscar' %}" class="btn btn-info" target="_self">Voltar</a>
     </form>
   </body>
 </html>
