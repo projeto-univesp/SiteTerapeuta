@@ -124,23 +124,25 @@
             {% csrf_token %}
             <div class="input-container">
               <label for="data_consulta">Data da Consulta:</label>
-              <input type="date" id="data_consulta" name="date" required />
+              <input
+                type="datetime-local"
+                id="data_consulta"
+                name="date"
+                required
+              />
             </div>
 
-            <div class="input-container">
-              <label for="_idTerapeuta">Terapeuta:</label>
-              <select id="_idTerapeuta" name="_idTerapeuta" required>
-                {% for terapeuta in terapeutas %}
-                <option value="{{ terapeuta.idTerapeuta }}">
-                  {{ terapeuta.nome }}
-                </option>
-                {% endfor %}
-              </select>
-            </div>
+            <input
+              type="hidden"
+              value="{{ terapeuta.id }}"
+              id="_idTerapeuta"
+              name="_idTerapeuta"
+              required
+            />
 
             <div class="input-container">
               <label for="_idPaciente">Paciente:</label>
-              <select id="_idPaciente" name="_idPaciente" required>
+              <select id="_idPaciente" name="_idPaciente">
                 {% for paciente in pacientes %}
                 <option value="{{ paciente.idPaciente }}">
                   {{ paciente.nome }}
@@ -159,29 +161,38 @@
             <thead>
               <tr>
                 <th>Paciente</th>
-                <th>Terapeuta</th>
                 <th>Data da Consulta</th>
-                <!-- <th></th> -->
               </tr>
             </thead>
             <tbody>
+              {% for agenda in consultas %}
               <tr>
-                <td>Paciente de Test</td>
-                <td>Terapeuta de Test</td>
-                <td>15:30 - 12/05/2024</td>
-                <td><button class="remove-button">Excluir</button></td>
+                <td>{{ agenda.name }}</td>
+                <td>{{ agenda.date }}</td>
+                <td>
+                  <form
+                    action="{% url 'deletar_consulta' agenda.id_agenda %}"
+                    method="post"
+                  >
+                    {% csrf_token %}
+                    <button type="submit" class="remove-button">Excluir</button>
+                  </form>
+                </td>
               </tr>
-              <!-- {% for consulta in consultas %}
-              <tr>
-                <td>{{ consulta.paciente.nome }}</td>
-                <td>{{ consulta.terapeuta.nome }}</td>
-                <td>{{ consulta.date }}</td>
-              </tr>
-              {% endfor %} -->
+              {% endfor %}
             </tbody>
           </table>
         </section>
       </div>
     </main>
+
+    <script>
+      const terapeuta = document.getElementById("_idTerapeuta");
+      const terapeutaLocalsStorage =
+        localStorage.getItem("trabalho_agenda_terapeutaId") || "";
+
+      if (terapeutaLocalsStorage)
+        return (terapeuta.value = terapeutaLocalsStorage);
+    </script>
   </body>
 </html>
